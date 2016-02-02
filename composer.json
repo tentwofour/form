@@ -16,9 +16,9 @@
     }
   ],
   "require": {
-    "php": ">=5.3.3",
-    "symfony/form": "2.7.*",
-    "symfony/event-dispatcher": "2.7.*",
+    "php": ">=5.4",
+    "symfony/form": ">2.7,<3.0",
+    "symfony/event-dispatcher": ">2.7,<3.0",
     "tentwofour/formatter": "1.0.0"
   },
   "require-dev": {
@@ -31,7 +31,7 @@
   },
   "extra": {
     "branch-alias": {
-      "dev-master": "1.0.x-dev"
+      "dev-master": "1.1.x-dev"
     }
   }
 }
