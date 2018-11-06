@@ -2,12 +2,18 @@
 
 namespace Ten24\Tests\Component\Form\Extension\Type;
 
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\FormBuilder;
 use Symfony\Component\Form\Forms;
 use Ten24\Component\Form\Extension\Type\HelpTypeExtension;
 
-class HelpTypeTest extends \PHPUnit_Framework_TestCase
+/**
+ * Class HelpTypeTest
+ *
+ * @package Ten24\Tests\Component\Form\Extension\Type
+ * @deprecated since 1.2, to be removed in 1.3, superceded by Symfony's Core type
+ */
+class HelpTypeTest extends TestCase
 {
     /**
      * @var \Symfony\Component\Form\FormBuilder
@@ -33,20 +39,21 @@ class HelpTypeTest extends \PHPUnit_Framework_TestCase
                                  ->addTypes($this->getTypes())
                                  ->addTypeExtensions($this->getTypeExtensions())
                                  ->getFormFactory();
-        $this->dispatcher = $this->getMock('Symfony\Component\EventDispatcher\EventDispatcherInterface');
-        $this->builder    = new FormBuilder(null, null, $this->dispatcher, $this->factory);
-
+        $this->dispatcher = $this->getMockBuilder('Symfony\Component\EventDispatcher\EventDispatcherInterface');
+        $this->builder    = $this->getMockClass('Symfony\Component\Form\FormBuilder', [], [
+            'null', 'null', $this->dispatcher, $this->factory
+        ]);
     }
 
     public function testSetInvalidYearsOption()
     {
         $help = 'Having trouble with the internets? Tell us about it.';
         $form = $this->factory->createNamed('__test___field',
-                                            $this->getTestedType(),
-                                            null,
-                                            [
-                                                'help' => $help,
-                                            ]);
+            $this->getTestedType(),
+            null,
+            [
+                'help' => $help,
+            ]);
 
         $view = $form->createView();
 
@@ -55,7 +62,7 @@ class HelpTypeTest extends \PHPUnit_Framework_TestCase
 
     protected function getTestedType()
     {
-        return 'text';
+        return TextType::class;
     }
 
     /**
@@ -66,7 +73,7 @@ class HelpTypeTest extends \PHPUnit_Framework_TestCase
     protected function getTypes()
     {
         return [
-            new TextType()
+            new TextType(),
         ];
     }
 
@@ -78,7 +85,7 @@ class HelpTypeTest extends \PHPUnit_Framework_TestCase
     protected function getTypeExtensions()
     {
         return [
-            new HelpTypeExtension()
+            new HelpTypeExtension(),
         ];
     }
 }
