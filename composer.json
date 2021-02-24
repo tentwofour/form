@@ -4,7 +4,10 @@
   "description": "Provides data transformers for Symfony2 Forms",
   "keywords": [
     "ten24",
-    "tentwofour"
+    "tentwofour",
+    "symfony",
+    "form",
+    "datatransformer"
   ],
   "homepage": "https://github.com/tentwofour/sf2-form",
   "license": "MIT",
@@ -16,22 +19,27 @@
     }
   ],
   "require": {
-    "php": ">=5.4",
-    "symfony/form": ">2.7,<3.0",
-    "symfony/event-dispatcher": ">2.7,<3.0",
-    "tentwofour/formatter": "1.0.0"
+    "php": "^7.0",
+    "symfony/form": "^3.0|^4.0",
+    "tentwofour/formatter": "^1.1"
   },
   "require-dev": {
+    "phpunit/phpunit": "^6.0"
   },
   "minimum-stability": "stable",
   "autoload": {
-    "psr-0": {
-      "Ten24\\": "src/"
+    "psr-4": {
+      "Ten24\\Component\\Form\\Extension\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Ten24\\Tests\\Component\\Form\\Extension\\": "tests/"
     }
   },
   "extra": {
     "branch-alias": {
-      "dev-master": "1.1.x-dev"
+      "dev-master": "1.2.x-dev"
     }
   }
 }

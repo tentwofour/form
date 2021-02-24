@@ -45,7 +45,7 @@ class PostalCodeViewTransformer implements DataTransformerInterface
      * Transforms an unformatted postal code (user-inputted) into one that conforms to better
      * database standards - 6 characters max, no special characters
      *
-     * S4P   0 H 0 => 12324567890
+     * S4P   0 H 0 => S4P0H0
      *
      * @param mixed $unformattedPostalCode
      *
