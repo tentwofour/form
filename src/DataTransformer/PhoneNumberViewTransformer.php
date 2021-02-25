@@ -37,6 +37,10 @@ class PhoneNumberViewTransformer implements DataTransformerInterface
      */
     public function transform($formattedPhoneNumber)
     {
+        if (empty($formattedPhoneNumber)) {
+            return '';
+        }
+
         $phoneNumber = new PhoneNumberFormatter($formattedPhoneNumber, $this->phoneNumberFormat);
 
         return $phoneNumber->format();
@@ -54,6 +58,10 @@ class PhoneNumberViewTransformer implements DataTransformerInterface
      */
     public function reverseTransform($unformattedPhoneNumber)
     {
+        if (empty($unformattedPhoneNumber)) {
+            return '';
+        }
+
         $phoneNumber = new PhoneNumberFormatter($unformattedPhoneNumber, $this->phoneNumberFormat);
 
         return $phoneNumber->reverseFormat();
