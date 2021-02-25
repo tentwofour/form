@@ -13,6 +13,12 @@ class PhoneNumberViewTransformerTest extends TestCase
         $f         = new PhoneNumberViewTransformer();
         $formatted = $f->transform($pn);
         $this->assertEquals('+11 (123) 456-7890', $formatted);
+
+        // Strict type returns in Formatter > 1.2 cause empty values to fail
+        $pn        = '';
+        $f         = new PhoneNumberViewTransformer();
+        $formatted = $f->transform($pn);
+        $this->assertEquals('', $formatted);
     }
 
     public function testReverseTransform()
@@ -21,5 +27,13 @@ class PhoneNumberViewTransformerTest extends TestCase
         $f         = new PhoneNumberViewTransformer();
         $formatted = $f->reverseTransform($pn);
         $this->assertEquals('+111234567890', $formatted);
+
+        // Strict type returns in Formatter > 1.2 cause empty values to fail
+        $pn        = '';
+        $f         = new PhoneNumberViewTransformer();
+        $formatted = $f->reverseTransform($pn);
+        $this->assertEquals('', $formatted);
     }
+
+
 }

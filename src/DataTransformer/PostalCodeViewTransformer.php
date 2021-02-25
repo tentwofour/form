@@ -30,12 +30,16 @@ class PostalCodeViewTransformer implements DataTransformerInterface
      *
      * S4P0H0 => S4P 0H0
      *
-     * @param mixed $formattedPostalCode
+     * @param string $formattedPostalCode
      *
-     * @return mixed|void
+     * @return string
      */
     public function transform($formattedPostalCode)
     {
+        if (empty($formattedPostalCode)) {
+            return '';
+        }
+
         $postalCode = new PostalCodeFormatter($formattedPostalCode, $this->postalCodeFormat);
 
         return $postalCode->format();
@@ -49,10 +53,14 @@ class PostalCodeViewTransformer implements DataTransformerInterface
      *
      * @param mixed $unformattedPostalCode
      *
-     * @return mixed|void
+     * @return string
      */
     public function reverseTransform($unformattedPostalCode)
     {
+        if (empty($unformattedPostalCode)) {
+            return '';
+        }
+
         $postalCode = new PostalCodeFormatter($unformattedPostalCode, $this->postalCodeFormat);
 
         return $postalCode->reverseFormat();
